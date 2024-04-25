@@ -4,14 +4,15 @@ import {
   ActivityIndicatorProps,
 } from "react-native";
 
-import { useTheme } from "@shopify/restyle";
-import { Theme, ThemeColors } from "../../theme/theme";
+import { ThemeColors } from "../../theme/theme";
+import { useAppTheme } from "../../hooks/useAppTheme";
 
 interface Props extends Omit<ActivityIndicatorProps, "color"> {
   color: ThemeColors;
 }
+
 export function ActivityIndicator({ color }: Props) {
-  const { colors } = useTheme<Theme>();
+  const { colors } = useAppTheme();
 
   return <RNActivityIndicator color={colors[color]} />;
 }
