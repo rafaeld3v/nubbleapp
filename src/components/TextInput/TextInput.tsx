@@ -11,24 +11,27 @@ import { $fontFamily, $fontSizes, Text } from "../Text/Text";
 
 import { useAppTheme } from "../../hooks/useAppTheme";
 
-interface TextInputProps extends RNTextInputProps {
+export interface TextInputProps extends RNTextInputProps {
   label: string;
   errorMessage?: string;
   RightComponent?: React.ReactElement;
-  BoxProps?: BoxProps;
+  boxProps?: BoxProps;
+  containerProps?: BoxProps;
 }
 
 export function TextInput({
   label,
   errorMessage,
   RightComponent,
-  BoxProps,
+  boxProps,
+  containerProps,
   ...rnTextInputProps
 }: TextInputProps) {
   const { colors } = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
 
   const $textInputContainer: BoxProps = {
+    flexDirection: "row",
     borderWidth: errorMessage ? 2 : 1,
     borderColor: errorMessage ? "error" : "gray4",
     padding: "s16",
@@ -40,12 +43,11 @@ export function TextInput({
   }
 
   return (
-    <Box {...BoxProps}>
+    <Box {...boxProps}>
       <Pressable onPress={focusInput}>
-        <Text preset="paragraphMedium" mb="s4">
+        <Text preset="paragraphMedium" marginBottom="s4">
           {label}
         </Text>
-
         <Box {...$textInputContainer}>
           <RNTextInput
             ref={inputRef}
@@ -53,7 +55,6 @@ export function TextInput({
             style={$textInputStyle}
             {...rnTextInputProps}
           />
-
           {RightComponent && (
             <Box justifyContent="center" ml="s16">
               {RightComponent}
