@@ -13,6 +13,7 @@ import {
   SpacingProps,
   LayoutProps,
   BorderProps,
+  spacingShorthand,
   SpacingShorthandProps,
 } from "@shopify/restyle";
 import { Theme } from "../../theme/theme";
@@ -29,4 +30,7 @@ export type TouchableOpacityBoxProps = BackgroundColorProps<Theme> &
 export const TouchableOpacityBox = createRestyleComponent<
   TouchableOpacityBoxProps,
   Theme
->([backgroundColor, spacing, layout, border], TouchableOpacity);
+>(
+  [backgroundColor, spacing, spacingShorthand, layout, border],
+  TouchableOpacity,
+);
