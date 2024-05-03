@@ -1,5 +1,6 @@
 import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useForm, Controller } from "react-hook-form";
 
 import { Text } from "../../../components/Text/Text";
 import { TextInput } from "../../../components/TextInput/TextInput";
@@ -8,9 +9,26 @@ import { Screen } from "../../../components/Screen/Screen";
 import { PasswordInput } from "../../../components/PasswordInput/PasswordInput";
 import { RootStackParamList } from "../../../routes/Router";
 
+type LoginFormType = {
+  email: string;
+  password: string;
+};
+
 type ScreenProps = NativeStackScreenProps<RootStackParamList, "LoginScreen">;
 
 export function LoginScreen({ navigation }: ScreenProps) {
+  const { control, formState, handleSubmit } = useForm<LoginFormType>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    mode: "onChange",
+  });
+
+  function submitForm({ email, password }: LoginFormType) {
+    // asd
+  }
+
   function navigateToSignUpScreen() {
     navigation.navigate("SignUpScreen");
   }
@@ -28,17 +46,40 @@ export function LoginScreen({ navigation }: ScreenProps) {
         Digite seu e-mail e senha para entrar
       </Text>
 
-      <TextInput
-        label="Email"
-        placeholder="Digite seu e-mail"
-        errorMessage="Email invalido"
-        boxProps={{ mb: "s20" }}
+      <Controller
+        control={control}
+        name="email"
+        rules={{
+          required: "E-mail é obrigatorio!",
+        }}
+        render={({ field, fieldState }) => (
+          <TextInput
+            value={field.value}
+            onChangeText={field.onChange}
+            errorMessage={fieldState.error?.message}
+            label="Email"
+            placeholder="Digite seu e-mail"
+            boxProps={{ mb: "s20" }}
+          />
+        )}
       />
 
-      <PasswordInput
-        label="Senha"
-        placeholder="Digite sua senha"
-        boxProps={{ mb: "s10" }}
+      <Controller
+        control={control}
+        name="password"
+        rules={{
+          required: "Senha obrigatorio!",
+        }}
+        render={({ field, fieldState }) => (
+          <PasswordInput
+            value={field.value}
+            onChangeText={field.onChange}
+            errorMessage={fieldState.error?.message}
+            label="Senha"
+            placeholder="Digite sua senha"
+            boxProps={{ mb: "s10" }}
+          />
+        )}
       />
 
       <Text
@@ -49,7 +90,12 @@ export function LoginScreen({ navigation }: ScreenProps) {
         Esqueci minha senha
       </Text>
 
-      <Button marginTop="s48" title="Entrar" />
+      <Button
+        disabled={!formState.isValid}
+        onPress={handleSubmit(submitForm)}
+        marginTop="s48"
+        title="Entrar"
+      />
 
       <Button
         onPress={navigateToSignUpScreen}
