@@ -1,6 +1,8 @@
 import React from "react";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Text } from "../../../components/Text/Text";
 import { TextInput } from "../../../components/TextInput/TextInput";
@@ -8,6 +10,7 @@ import { Button } from "../../../components/Button/Button";
 import { Screen } from "../../../components/Screen/Screen";
 import { PasswordInput } from "../../../components/PasswordInput/PasswordInput";
 import { RootStackParamList } from "../../../routes/Router";
+import { LoginSchema, loginSchema } from "./loginSchema";
 
 type LoginFormType = {
   email: string;
@@ -17,7 +20,8 @@ type LoginFormType = {
 type ScreenProps = NativeStackScreenProps<RootStackParamList, "LoginScreen">;
 
 export function LoginScreen({ navigation }: ScreenProps) {
-  const { control, formState, handleSubmit } = useForm<LoginFormType>({
+  const { control, formState, handleSubmit } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -25,8 +29,8 @@ export function LoginScreen({ navigation }: ScreenProps) {
     mode: "onChange",
   });
 
-  function submitForm({ email, password }: LoginFormType) {
-    // asd
+  function submitForm({ email, password }: LoginSchema) {
+    Alert.alert(`Email: ${email} ${`\n`} Senha: ${password}`);
   }
 
   function navigateToSignUpScreen() {
