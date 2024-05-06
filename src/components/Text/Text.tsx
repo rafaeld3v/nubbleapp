@@ -2,18 +2,18 @@ import React from "react";
 import { TextStyle } from "react-native";
 
 import { createText } from "@shopify/restyle";
-import { Theme } from "../../theme/theme";
+
+import { Theme } from "@theme";
 
 const SRText = createText<Theme>();
 type SRTextProps = React.ComponentProps<typeof SRText>;
 
-interface TextProps extends SRTextProps {
+export interface TextProps extends SRTextProps {
   preset?: TextVariants;
   bold?: boolean;
   italic?: boolean;
   semiBold?: boolean;
 }
-
 export function Text({
   children,
   preset = "paragraphMedium",
@@ -24,7 +24,6 @@ export function Text({
   ...sRTextProps
 }: TextProps) {
   const fontFamily = getFontFamily(preset, bold, italic, semiBold);
-
   return (
     <SRText
       color="backgroundContrast"
@@ -41,11 +40,14 @@ function getFontFamily(
   italic?: boolean,
   semiBold?: boolean,
 ) {
+  if (
+    preset === "headingLarge" ||
+    preset === "headingMedium" ||
+    preset === "headingSmall"
+  ) {
+    return italic ? $fontFamily.boldItalic : $fontFamily.bold;
+  }
   switch (true) {
-    case preset === "headingLarge" ||
-      preset === "headingMedium" ||
-      preset === "headingSmall":
-      return italic ? $fontFamily.boldItalic : $fontFamily.bold;
     case bold && italic:
       return $fontFamily.boldItalic;
     case bold:

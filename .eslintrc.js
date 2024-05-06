@@ -1,11 +1,49 @@
 module.exports = {
   root: true,
-  extends: "@react-native",
+  extends: ["@react-native"],
+  plugins: ["import"],
   rules: {
-    bracketSpacing: true,
-    arrowParens: "avoid",
-    bracketSameLine: true,
-    singleQuote: false,
-    trailingComma: "all",
+    "arrow-parens": ["error", "as-needed"],
+    "brace-style": ["error", "1tbs", { allowSingleLine: true }],
+    "quote-props": ["error", "as-needed"],
+    "comma-dangle": ["error", "always-multiline"],
+    "react-native/no-inline-styles": "off",
+    quotes: ["error", "double", { avoidEscape: true }],
   },
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      rules: {
+        "import/order": [
+          "error",
+          {
+            groups: ["external", "builtin", "internal", "parent", "sibling"],
+            pathGroups: [
+              {
+                pattern: "react+(|-native)",
+                group: "external",
+                position: "before",
+              },
+              {
+                pattern: "@+(routes|screens|components|hooks|theme)",
+                group: "internal",
+                position: "before",
+              },
+              {
+                pattern: "./",
+                group: "internal",
+                position: "before",
+              },
+            ],
+            pathGroupsExcludedImportTypes: ["react+(|-native)"],
+            alphabetize: {
+              order: "asc",
+              caseInsensitive: true,
+            },
+            "newlines-between": "always",
+          },
+        ],
+      },
+    },
+  ],
 };

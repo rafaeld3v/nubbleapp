@@ -6,25 +6,22 @@ import {
   TextStyle,
 } from "react-native";
 
+import { useAppTheme } from "@hooks";
+
 import { Box, BoxProps } from "../Box/Box";
 import { $fontFamily, $fontSizes, Text } from "../Text/Text";
-
-import { useAppTheme } from "../../hooks/useAppTheme";
 
 export interface TextInputProps extends RNTextInputProps {
   label: string;
   errorMessage?: string;
   RightComponent?: React.ReactElement;
   boxProps?: BoxProps;
-  containerProps?: BoxProps;
 }
-
 export function TextInput({
   label,
   errorMessage,
   RightComponent,
   boxProps,
-  containerProps,
   ...rnTextInputProps
 }: TextInputProps) {
   const { colors } = useAppTheme();
@@ -50,6 +47,7 @@ export function TextInput({
         </Text>
         <Box {...$textInputContainer}>
           <RNTextInput
+            autoCapitalize="none"
             ref={inputRef}
             placeholderTextColor={colors.gray2}
             style={$textInputStyle}
@@ -61,7 +59,6 @@ export function TextInput({
             </Box>
           )}
         </Box>
-
         {errorMessage && (
           <Text color="error" preset="paragraphSmall" bold>
             {errorMessage}

@@ -1,30 +1,26 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { RootStackParamList } from "../../../routes/Router";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useResetNavigationSuccess } from "../../../hooks/useResetNavigationSuccess";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useForm } from "react-hook-form";
+
+import { RootStackParamList } from "@routes";
+
+import { Button } from "../../../components/Button/Button";
+import { FormPasswordInput } from "../../../components/Form/FormPasswordInput";
+import { FormTextInput } from "../../../components/Form/FormTextInput";
 import { Screen } from "../../../components/Screen/Screen";
 import { Text } from "../../../components/Text/Text";
-import { Button } from "../../../components/Button/Button";
-import { FormTextInput } from "../../../components/Form/FormTextInput";
-import { FormPasswordInput } from "../../../components/Form/FormPasswordInput";
-import { signUpSchema } from "./signUpSchema";
+import { useResetNavigationSuccess } from "../../../hooks/useResetNavigationSuccess";
 
-type SignUpFormType = {
-  username: string;
-  fullName: string;
-  email: string;
-  password: string;
-};
+import { signUpSchema, SignUpSchema } from "./signUpSchema";
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, "SignUpScreen">;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function SignUpScreen({ navigation }: ScreenProps) {
   const { reset } = useResetNavigationSuccess();
-
-  const { control, formState, handleSubmit } = useForm<SignUpFormType>({
+  const { control, formState, handleSubmit } = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       username: "",
@@ -34,8 +30,7 @@ export function SignUpScreen({ navigation }: ScreenProps) {
     },
     mode: "onChange",
   });
-
-  function submitForm(formValues: SignUpFormType) {
+  function submitForm(formValues: SignUpSchema) {
     console.log(formValues);
     reset({
       title: "Sua conta foi criada com sucesso!",
@@ -46,7 +41,6 @@ export function SignUpScreen({ navigation }: ScreenProps) {
       },
     });
   }
-
   return (
     <Screen canGoBack scrollable>
       <Text preset="headingLarge" mb="s32">
@@ -69,7 +63,6 @@ export function SignUpScreen({ navigation }: ScreenProps) {
         placeholder="Digite seu nome completo"
         boxProps={{ mb: "s20" }}
       />
-
       <FormTextInput
         control={control}
         name="email"
