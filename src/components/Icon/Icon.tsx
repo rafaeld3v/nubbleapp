@@ -45,6 +45,7 @@ export interface IconProps {
   size?: number;
   onPress?: () => void;
 }
+
 export function Icon({
   name,
   color = "backgroundContrast",
