@@ -33,6 +33,9 @@ export function AppTabNavigator() {
       tabBar={renderTabBar}
       screenOptions={{
         headerShown: false,
+        tabBarStyle: {
+          paddingTop: 20,
+        },
       }}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
       <Tab.Screen name="NewPostScreen" component={NewPostScreen} />
