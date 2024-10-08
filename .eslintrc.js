@@ -1,7 +1,10 @@
 module.exports = {
   root: true,
-  extends: ["@react-native"],
-  plugins: ["import"],
+  extends: [
+    "@react-native",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+  ],
+  plugins: ["import", "@tanstack/query"],
   rules: {
     "arrow-parens": ["error", "as-needed"],
     "brace-style": ["error", "1tbs", { allowSingleLine: true }],
