@@ -1,22 +1,16 @@
 import React from "react";
 
-import { Button, Screen, Text } from "@components";
+import { useAuthSignOut } from "@domain";
+
+import { Button, Screen } from "@components";
 import { AppScreenProps } from "@routes";
 
-export function SettingsScreen({
-  navigation,
-}: AppScreenProps<"SettingsScreen">) {
+export function SettingsScreen({}: AppScreenProps<"SettingsScreen">) {
+  const { isLoading, signOut } = useAuthSignOut();
+
   return (
     <Screen canGoBack>
-      <Text preset="headingSmall">Setting Screen</Text>
-      <Button
-        title="New Post"
-        onPress={() =>
-          navigation.navigate("AppTabNavigator", {
-            screen: "NewPostScreen",
-          })
-        }
-      />
+      <Button loading={isLoading} title="Sair da conta" onPress={signOut} />
     </Screen>
   );
 }
