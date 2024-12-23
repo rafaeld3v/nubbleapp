@@ -1,6 +1,5 @@
-import { ViewStyle } from "react-native";
-
 import { createTheme } from "@shopify/restyle";
+import { ViewStyle } from "react-native/types";
 
 export const palette = {
   greenPrimary: "#074C4E",
@@ -59,6 +58,7 @@ export const theme = createTheme({
     s12: 12,
     s16: 16,
   },
+
   textVariants: {
     defaults: {},
   },

@@ -42,6 +42,7 @@ export function SignUpScreen({}: AuthScreenProps<"SignUpScreen">) {
       reset(resetParam);
     },
   });
+
   const { control, formState, handleSubmit, watch, getFieldState } =
     useForm<SignUpSchema>({
       resolver: zodResolver(signUpSchema),
@@ -86,7 +87,6 @@ export function SignUpScreen({}: AuthScreenProps<"SignUpScreen">) {
         placeholder="Digite seu nome"
         boxProps={{ mb: "s20" }}
       />
-
       <FormTextInput
         control={control}
         name="lastName"
@@ -95,19 +95,18 @@ export function SignUpScreen({}: AuthScreenProps<"SignUpScreen">) {
         placeholder="Digite seu sobrenome"
         boxProps={{ mb: "s20" }}
       />
-
       <FormTextInput
         control={control}
         name="email"
         label="E-mail"
         placeholder="Digite seu e-mail"
+        boxProps={{ mb: "s20" }}
         errorMessage={emailValidation.errorMessage}
         RightComponent={
           emailValidation.isFetching ? (
             <ActivityIndicator size="small" />
           ) : undefined
         }
-        boxProps={{ mb: "s20" }}
       />
 
       <FormPasswordInput

@@ -2,7 +2,7 @@ import React from "react";
 
 import { fireEvent, render, screen } from "test-utils";
 
-import { IconProps, PasswordInput } from "@components";
+import { PasswordInput, IconProps } from "@components";
 
 describe("<PasswordInput />", () => {
   it("starts with hidden password", () => {

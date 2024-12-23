@@ -15,7 +15,7 @@ export interface UsePaginatedListResult<TData> {
 export function usePaginatedList<Data>(
   queryKey: readonly unknown[],
   getList: (page: number) => Promise<Page<Data>>,
-) {
+): UsePaginatedListResult<Data> {
   const [list, setList] = useState<Data[]>([]);
 
   const query = useInfiniteQuery({

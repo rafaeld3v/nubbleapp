@@ -1,8 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npm run lint
-
-npx tsc --noEmit
-
-npm run test
+yarn lint
+yarn tsc --noEmit
+yarn test

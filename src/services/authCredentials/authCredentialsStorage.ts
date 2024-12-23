@@ -1,6 +1,7 @@
 import { AuthCredentials } from "@domain";
 
 import { storage } from "../storage";
+
 const AUTH_KEY = "@Auth";
 
 async function set(ac: AuthCredentials): Promise<void> {

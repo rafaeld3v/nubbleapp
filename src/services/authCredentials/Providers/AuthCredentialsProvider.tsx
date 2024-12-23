@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { createContext, useState } from "react";
 
 import { registerInterceptor } from "@api";
 import { AuthCredentials, authService } from "@domain";
@@ -12,11 +13,13 @@ export const AuthCredentialsContext = createContext<AuthCredentialsService>({
   saveCredentials: async () => {},
   removeCredentials: async () => {},
 });
+
 export function AuthCredentialsProvider({
   children,
 }: React.PropsWithChildren<{}>) {
   const [authCredentials, setAuthCredentials] =
     useState<AuthCredentials | null>(null);
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -36,7 +39,7 @@ export function AuthCredentialsProvider({
 
   async function startAuthCredentials() {
     try {
-      // await new Promise(resolve => setTimeout(resolve, 2000, ""));
+      // await new Promise(resolve => setTimeout(resolve, 2000, ''));
       const ac = await authCredentialsStorage.get();
       if (ac) {
         authService.updateToken(ac.token);

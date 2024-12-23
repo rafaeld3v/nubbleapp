@@ -8,6 +8,7 @@ export function SuccessScreen({
   navigation,
 }: AuthScreenProps<"SuccessScreen">) {
   function goBackToBegin() {
+    // TODO: navegar para a tela de login
     navigation.goBack();
   }
 

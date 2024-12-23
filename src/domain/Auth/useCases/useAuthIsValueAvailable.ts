@@ -47,7 +47,7 @@ export function useAuthIsUsernameAvailable({
     value: username,
     enabled,
     isAvailableFunc: authService.isUserNameAvailable,
-    queryKey: QueryKeys.IsUserNameAvailable,
+    queryKey: QueryKeys.IsUsernameAvailable,
   });
 }
 
@@ -62,6 +62,6 @@ export function useAuthIsEmailAvailable({
     value: email,
     enabled,
     isAvailableFunc: authService.isEmailAvailable,
-    queryKey: QueryKeys.IsUserNameAvailable,
+    queryKey: QueryKeys.IsUsernameAvailable,
   });
 }

@@ -7,6 +7,11 @@ export interface AuthCredentials {
   user: User;
 }
 
+export interface FieldIsAvailableAPI {
+  message: string;
+  isAvailable: boolean;
+}
+
 export interface AuthCredentialsAPI {
   auth: {
     type: string; //'bearer';
@@ -37,11 +42,6 @@ export interface SignUpData {
   username: string;
   email: string;
   password: string;
-}
-
-export interface FieldIsAvailableAPI {
-  message: string;
-  isAvailable: boolean;
 }
 
 export interface ForgotPasswordParam {

@@ -6,11 +6,11 @@ import { useToastService } from "@services";
 import { useForm } from "react-hook-form";
 
 import {
-  Button,
-  FormPasswordInput,
-  FormTextInput,
-  Screen,
   Text,
+  Screen,
+  Button,
+  FormTextInput,
+  FormPasswordInput,
 } from "@components";
 import { AuthScreenProps } from "@routes";
 

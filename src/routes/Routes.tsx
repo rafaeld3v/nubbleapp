@@ -8,7 +8,7 @@ import { ActivityIndicator, Box } from "@components";
 import { AppStack } from "./AppStack";
 import { AuthStack } from "./AuthStack";
 
-export function Routes() {
+export function Router() {
   const { authCredentials, isLoading } = useAuthCredentials();
 
   if (isLoading) {

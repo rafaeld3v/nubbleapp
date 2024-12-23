@@ -1,7 +1,6 @@
 import React from "react";
 
 // import {ToastProvider} from '@services';
-
 import {
   AuthCredentialsProvider,
   initializeStorage,
@@ -12,7 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Toast } from "@components";
-import { Routes } from "@routes";
+import { Router } from "@routes";
 import { theme } from "@theme";
 
 initializeStorage(MMKVStorage);
@@ -28,7 +27,7 @@ function App(): JSX.Element {
             {/* Only use ToastProvider if it is using Context implementation.
           Zustand implementation doesn't need a provider */}
             {/* <ToastProvider> */}
-            <Routes />
+            <Router />
             <Toast />
             {/* </ToastProvider> */}
           </ThemeProvider>

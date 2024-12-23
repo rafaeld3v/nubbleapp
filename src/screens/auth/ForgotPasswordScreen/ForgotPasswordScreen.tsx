@@ -30,6 +30,7 @@ export function ForgotPasswordScreen({}: AuthScreenProps<"ForgotPasswordScreen">
     onSuccess: () => reset(resetParam),
     onError: message => showToast({ message, type: "error" }),
   });
+
   const { control, formState, handleSubmit } = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {

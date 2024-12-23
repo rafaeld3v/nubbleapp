@@ -11,6 +11,7 @@ export function useAuthCredentials(): AuthCredentialsService {
       "AuthCredentials should be used within a AuthCredentialsProvider",
     );
   }
+
   return context;
 }
 
@@ -19,11 +20,11 @@ export function useAuthCredentials(): AuthCredentialsService {
 //     set => ({
 //       authCredentials: null,
 //       isLoading: false,
-//       saveCredentials: async ac => set({ authCredentials: ac }),
-//       removeCredentials: async () => set({ authCredentials: null }),
+//       saveCredentials: async ac => set({authCredentials: ac}),
+//       removeCredentials: async () => set({authCredentials: null}),
 //     }),
 //     {
-//       name: "@Auth",
+//       name: '@Auth',
 //       storage: storage,
 //     },
 //   ),

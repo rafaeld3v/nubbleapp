@@ -1,5 +1,5 @@
 import { dateUtils } from "@utils";
-import { sub, formatISO, Duration, add } from "date-fns";
+import { sub, add, formatISO, Duration } from "date-fns";
 
 const MOCKED_NOW = 1696573824333;
 
@@ -43,13 +43,6 @@ describe("dateUtils", () => {
     });
 
     test("should be displayed in months if less than 12 months ago", () => {
-      const time = sub(Date.now(), { months: 10 });
-      const timeISO = formatISO(time);
-
-      expect(dateUtils.formatRelative(timeISO)).toBe("10 mes");
-    });
-
-    test("should be displayed in dd/MM/yyyy if less than 12 months ago", () => {
       expect(getDateISO({ months: 10 })).toBe("10 mes");
     });
 

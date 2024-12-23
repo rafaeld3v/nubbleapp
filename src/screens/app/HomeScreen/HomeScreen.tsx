@@ -40,7 +40,7 @@ export function HomeScreen({}: AppTabScreenProps<"HomeScreen">) {
         data={postList}
         keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
-        onEndReached={() => fetchNextPage()}
+        onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
         refreshing={isLoading}
         refreshControl={

@@ -9,7 +9,7 @@ export function SettingsScreen({}: AppScreenProps<"SettingsScreen">) {
   const { isLoading, signOut } = useAuthSignOut();
 
   return (
-    <Screen canGoBack>
+    <Screen canGoBack title="Configurações">
       <Button loading={isLoading} title="Sair da conta" onPress={signOut} />
     </Screen>
   );

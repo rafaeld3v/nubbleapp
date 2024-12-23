@@ -20,14 +20,12 @@ export type AppTabBottomTabParamList = {
   FavoriteScreen: undefined;
   MyProfileScreen: undefined;
 };
-
 const Tab = createBottomTabNavigator<AppTabBottomTabParamList>();
 
 export function AppTabNavigator() {
   function renderTabBar(props: BottomTabBarProps) {
     return <AppTabBar {...props} />;
   }
-
   return (
     <Tab.Navigator
       tabBar={renderTabBar}
